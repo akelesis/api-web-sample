@@ -11,6 +11,7 @@ module.exports = (app) => {
     }
 
     const post = (req, res) => {
+        console.log(req.body)
         const fs = require('fs')
 
         const users = app.users
@@ -30,7 +31,7 @@ module.exports = (app) => {
         const user = {...req.body}
         const users = app.users
 
-        const posicao = users.map(user => user.id).indexOf(userId)
+        const posicao = users.map(user => user?.id).indexOf(userId)
         users[posicao] = user
 
         const usersString = JSON.stringify(users)
@@ -44,7 +45,7 @@ module.exports = (app) => {
         const userId = req.params.id
         const users = app.users
 
-        const posicao = users.map(user => user.id).indexOf(userId)
+        const posicao = users.map(user => user?.id).indexOf(userId)
 
         delete users[posicao]
 
